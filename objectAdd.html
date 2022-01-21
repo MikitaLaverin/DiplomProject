@@ -1,0 +1,330 @@
+
+<html lang="ru">
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="Pragma" content="no-cache" >
+      <title>Кабинет Менеджера</title>
+      <link href="css/animate.min.css" rel="stylesheet">
+      <link href="css/bootstrap.min.css" rel="stylesheet">
+      <link href="css/linearicons.css" rel="stylesheet">
+      <link href="css/simple-line-icons.css" rel="stylesheet">
+      <link href="css/dataTables.bootstrap4.min.css" rel="stylesheet" media="none">
+      <link href="css/theme.css" rel="stylesheet">
+      <link href="css/styles.css" rel="stylesheet">
+      <link href="css/myStyle.css" rel="stylesheet">
+      <link href="css/zz.css" rel="stylesheet">
+      <link rel="shortcut icon" href="assets/title.png" type="image/png">
+    </head>
+    <body class="navbar-expand-lg wow fadeIn faster" data-wow-delay="300ms" data-spy="scroll" data-target="#sm" data-offset="60">
+          <div class="container-fluid fixed-top bg-primary" id="topnav">
+          <div class="row collapse show no-gutters d-flex h-100 position-relative sidebar-collapse">
+              <div class="col-6 pr-4 w-sidebar navbar-collapse collapse d-none d-lg-flex">
+                <img src="./assets/klop.png" width="200px" height="45px">  
+                
+              </div>
+              <div class="col">
+                  <nav class="navbar navbar-dark navbar-expand px-lg-1">
+                      <a data-toggle="collapse" href="#" data-target=".sidebar-collapse" class="navbar-brand mr-3">
+                          <span class="h4 align-middle mb-0"><span class="lnr lnr-menu"></span></span>
+                      </a>
+                      <a class="navbar-brand" href="#" title="Home" data-toggle="dropdown">Меню</a>
+                      <div class="dropdown-menu border-light shadow text-uppercase animate-grow-in">
+              
+                      </div>
+                      <div class="preloader">
+                        <div class="preloader__row">
+                 
+                        </div>
+                      </div>
+                
+                      <ul class="navbar-nav ml-auto mr-2">
+                          <li class="nav-item dropdown position-static mr-1">
+                     
+                         
+                      <ul class="navbar-nav">
+                          <li class="nav-item dropdown">
+                            <a href="#" class="nav-link py-0 text-truncate" data-toggle="dropdown">
+                                <span class="align-middle" id="NameFamil" data-toggle="tooltip" data-placement="left" title="You are logged in"></span><!--тут имя менеджера-->
+                    
+                            </a>
+                              <div class="dropdown-menu dropdown-menu-right mt-3 border-light shadow text-uppercase animate-grow-in">
+                                <a class="dropdown-item px-3" href="#profile" data-target="#Profile" data-toggle="modal"><span class="lnr lnr-user"></span> Мой профиль</a>
+                                <div class="dropdown-divider">
+                                    
+                                </div>
+                                <button class="dropdown-item px-3" id="exit" data-target="#modalSmall" data-toggle="modal"><span class="lnr lnr-exit"></span> Выйти из кабинета</button>
+                            </div>
+                          </li>
+                      </ul>
+                  </nav>
+              </div>
+          </div>
+      </div>
+      <div class="container-fluid h-100 px-0">
+          <div class="row collapse show no-gutters d-flex h-100 position-relative sidebar-collapse">
+              <div class="col-3 p-0 h-100 w-sidebar navbar-collapse collapse d-none d-lg-flex sidebar-collapse sidebar">
+                                  <!-- fixed sidebar -->
+                  <div class="navbar navbar-dark d-block bg-dark text-white position-fixed h-100 align-self-start w-sidebar shadow-sm p-0 pt-2 pb-4 text-uppercase" id="sidebar">
+                      <button data-toggle="collapse" data-target=".sidebar-collapse" class="navbar-brand my-1 mr-3 float-right p-0 d-inline-block d-lg-none btn btn-link">
+                          <span class="h4 align-middle mb-0"><span class="lnr lnr-menu"></span></span>
+                      </button>
+                      <div class="nav flex-column flex-wrap pt-5 mt-3" id="menu1">
+                          <a href="./#" class="nav-link ripple" aria-expanded="true" data-toggle="collapse" data-target="#demo1"><i class="icon-speedometer icons"></i> Навигационное меню</a>
+                          <div class="collapse show" data-parent="#menu1" id="demo1">
+                              <div class="nav flex-column flex-wrap text-truncate">
+                                  <a href="./index.html" class="nav-link">Список заказчиков</a>
+                                  <a href="./objeck.html" class="nav-link" title="Default">Список обьектов</a>
+                                  <a href="./history.html" class="nav-link"> История</a>
+                
+                              </div>
+                          </div>
+                          <a href="./addUser.html" class="nav-link"><i class="icon-plus icons"></i> +Аккаунты</a>
+               
+                     
+                      </div>
+               
+                   
+                  </div>
+              </div>
+              <div class="col p-0 d-flex flex-column">
+           
+                  <main class="p-4 flex-fill">
+                      <div class="row py-3">
+                          <div class="col-12 wow fadeInUp faster">
+                              <div class="position-relative">
+                                <div id="spisokZack">
+                                       
+                                </div>
+  <!-- тут вывод в таблицу .............................................................................................................. -->
+  <!-- тут вывод в таблицу .............................................................................................................. -->
+  <style>
+    .table_sort table {
+    border-collapse: collapse;
+}
+
+.table_sort th {
+    color: #000000;
+    background: #dbdbdb9a;
+    cursor: pointer;
+}
+
+.table_sort td,
+.table_sort th {
+    width: 250px;
+    height: 40px;
+    text-align: center;
+    border: 2px solid #846868;
+}
+
+
+th.sorted[data-order="1"],
+th.sorted[data-order="-1"] {
+    position: relative;
+}
+
+th.sorted[data-order="1"]::after,
+th.sorted[data-order="-1"]::after {
+    right: 10px;
+    position: absolute;
+}
+
+th.sorted[data-order="-1"]::after {
+	content: "▼"
+}
+
+th.sorted[data-order="1"]::after {
+	content: "▲"
+}
+</style>
+  <!-- тут вывод в таблицу .............................................................................................................. -->
+  <!-- тут вывод в таблицу .............................................................................................................. -->
+  <!-- тут вывод в таблицу .............................................................................................................. -->
+  
+  
+                                  <ul class="nav nav-tabs" role="tablist">
+                                      <li class="nav-item"><a href="#tab1" class="nav-link text-uppercase active" data-toggle="tab" data-target="#tab1" role="tab">Объекты</a></li>
+                                  </ul>
+                                  <div class="tab-content shadow-sm p-3">
+                                      <div class="tab-pane active" id="tab1" role="tabpanel">
+                                          <div class="">
+                                            <label align="left">
+                                                <h6>Выполненно- <img src="assets/green.png" width="15px" height="15px"></h6>
+                                            </label>
+                             
+                                            <label align="left">
+                                                <h6>Не выполненно- <img src="assets/yelloy.png" width="15px" height="15px"></h6>
+                                            </label>
+                              
+                                            <label align="left">
+                                                <h6>Срочно к выполнению- <img src="assets/red.png" width="15px" height="15px"></h6>
+                                            </label>
+                                            
+                                              <form id="search" method="POST" action="">
+                                              
+                                                  <input class="form-control col-md-6 ml-sm-auto col-lg-2 px-2" id="mira" name="mira" type="text" placeholder="Поиск..." >
+                                               </form>
+                                               <br>
+                                    
+                                            <br>
+                                            <form id="object_add" method="POST" action="">
+                                                <div class="container"></div>
+                                                    <div class="row">
+                                                    <div class="col-md-2">   
+                                                        <label align="left">
+                                                            <h5>Наименование</h5>
+                                                        </label>
+                                                        <input type="text" class="form-control  md-lg-4 px-6" name="name" class="span12"  required />
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <label align="left">
+                                                            <h5>Адресс объекта</h5>
+                                                        </label>
+                                                        <input type="text" class="form-control md-lg-4 px-6" name="addres" class="span12" placeholder="Улица 23, дом 2, кв 5" required />
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <label align="left">
+                                                            <h5>Телефон Отв.Лица</h5>
+                                                        </label>
+                                                        <input type="text" class="form-control md-lg-4 px-6" name="telephone" id="phone" class="span12" placeholder="+8(922) 999-9999" required />
+                                                    </div>
+                                                    <div class="col-md-1">
+                                                        <label align="left">
+                                                            <h5>Дезинсекция</h5>
+                                                        </label>
+                                                        <input type="text" class="form-control md-lg-4 px-6" name="squere" class="span12" placeholder="0 кв.м" />
+                                                    </div>
+                                                    <div class="col-md-1">
+                                                        <label align="left">
+                                                            <h5>Дератизация</h5>
+                                                        </label>
+                                                        <input type="text" class="form-control md-lg-4 px-6" name="squere_1"  class="span12" placeholder="0 кв.м"/>
+                                                    </div>
+                                                    <div class="col-md-1">
+                                                        <label align="left">
+                                                            <h5>Дезинфекция</h5>
+                                                        </label>
+                                                        <input type="text" class="form-control md-lg-4 px-6" name="squere_2"  class="span12" placeholder="0 кв.м"/>  
+                                                     
+                                                    </div>  
+                                                    <div class="col-md-2"> 
+                                                        <label align="left">
+                                                            <h5>Коментарий</h5>
+                                                        </label>
+                                                        <textarea type="text" class="form-control md-lg-6 px-6" rows="1" cols="10" name="comment" class="span12"></textarea>   
+                                                         
+                                                    </div>  
+                                                    <div class="col-md-1">
+                                                       
+                                                        <label align="left" class="text-white">
+                                                            <h5>.</h5>
+                                                        </label>
+                                                        <button align="right" class="form-control" id="submit" type="submit" >Внести</button>   
+                                                      
+                                                    </div>
+                                                   
+                                                    </div>
+                                                  </div>
+                                      
+                                                </form>                              
+                                       <br>
+                                       <br>
+                                            <table class="table_sort table-hover table-bordered" id="datatable-example">
+                                                <thead>
+                                                  <tr>
+                                                        <th>Наименование</th>
+                                                        <th>Адресс объекта</th>
+                                                        <th>Телефон <br> ответственного лица</th>
+                                                        <th>Дезинсекция</th>
+                                                        <th>Дератизация</th>
+                                                        <th>Дезинфекция</th>
+                                                        <th>Исполнитель</th>
+                                                        <th>Коментарий</th>
+                                                        <th>Действия</th>
+                                                    </tr>
+                                               
+                                                </thead>
+                                                <tbody id="object">
+                                                   
+                                                </tbody>
+                                            </table>
+                                 
+                                    
+                                          </div>
+                                      </div>
+  
+                                      <!-- Скрытое меню-->
+   
+                                      <!-- Скрытое меню-->
+                
+                                  <!-- /tab-content -->
+                              </div>
+                          </div>
+                      </div>
+                  </main>
+                               
+              </div>
+          </div>
+      </div>
+      
+          <div id="modalProfile" class="modal fade px-md-5 px-0" tabindex="-1" role="dialog" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered modal-lg mw-100 w-100 mx-auto">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h3 id="myModalLabel">Окно редактирования</h3>
+                      <button type="button" class="close font-weight-light" data-dismiss="modal" aria-hidden="true">&#xD7;</button>
+                  </div>
+                  <div class="modal-body p-lg-5 p-3">
+                      <div class="row">
+                          <div class="col-xl-12 order-lg-2 col-lg-8">
+                        
+                         
+                                  <div class="tab-pane py-2" id="edit">
+                                      <form class="row" method="POST" action="" id="upData_object">
+                                             <!--тут окно изменения-->
+                                      </form>
+                                  </div>
+                          
+                      </div>
+                  </div>
+
+              </div>
+          </div>
+      </div>
+      <div id="Profile" class="modal fade px-md-5 px-0" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg mw-100 w-100 mx-auto">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 id="myModalLabel">Профиль</h3>
+                    <button type="button" class="close font-weight-light" data-dismiss="modal" aria-hidden="true">&#xD7;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="row" id="proUser">
+                
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+ 
+
+      <!--scripts loaded here-->
+      <script src="MyJs/jquery-2.1.3.min.js"></script>
+      <script src="MyJs/sweetalert.js"></script>
+      <script src="MyJs/user/cosmetics.js"></script>
+      <script src="MyJs/login/sessia.js"></script>
+      <script src="MyJs/login/proverka.js"></script>
+      <script src="./js/jquery.min.js" ></script>
+      <script src="./js/jquery.maskedinput.min.js"></script>
+      <script src="MyJs/object/addObject.js"></script>
+    
+      <script src="./js/bootstrap.bundle.min.js"></script>
+      <script src="./js/wow.min.js"></script>
+      <script src="./js/Chart.min.js"></script>
+
+
+      <script src="./js/angular.min.js"></script>
+      <script src="./js/app.js"></script>
+    </body>
+  </html>

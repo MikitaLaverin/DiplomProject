@@ -1,0 +1,166 @@
+.allObject {
+    display: inline-block;
+    border-radius: 10px;
+    background-color: #2957b5;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 13px;
+    padding: 8px;
+    width: 180px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 2px;
+  }
+  
+  .allObject span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+  }
+  
+  .allObject span:after {
+    content: '\2192';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+  }
+  
+  .allObject:hover span {
+    padding-right: 25px;
+  }
+  
+  .allObject:hover span:after {
+    opacity: 1;
+    right: 0;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  .upData {
+    display: inline-block;
+    border-radius: 10px;
+    background-color: #9e9008;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 13px;
+    padding: 8px;
+    width: 180px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 2px;
+  }
+  
+  .upData span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+  }
+  
+  .upData span:after {
+    content: '\2692';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+  }
+  
+  .upData:hover span {
+    padding-right: 25px;
+  }
+  
+  .upData:hover span:after {
+    opacity: 1;
+    right: 0;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  .delete {
+    display: inline-block;
+    border-radius: 10px;
+    background-color: #b91414;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 13px;
+    padding: 8px;
+    width: 180px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 2px;
+  }
+  
+  .delete span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+  }
+  
+  .delete span:after {
+    content: '\2620';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+  }
+  
+  .delete:hover span {
+    padding-right: 25px;
+  }
+  
+  .delete:hover span:after {
+    opacity: 1;
+    right: 0;
+  }
+
+
+
+
+
+
+
+
+
+  

@@ -1,0 +1,763 @@
+
+<html lang="ru">
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Кабинет Менеджера</title>
+      <link href="css/animate.min.css" rel="stylesheet">
+      <link href="css/bootstrap.min.css" rel="stylesheet">
+      <link href="css/linearicons.css" rel="stylesheet">
+      <link href="css/simple-line-icons.css" rel="stylesheet">
+      <link href="css/dataTables.bootstrap4.min.css" rel="stylesheet" media="none">
+      <link href="css/theme.css" rel="stylesheet">
+      <link href="css/styles.css" rel="stylesheet">
+      <link href="css/myStyle.css" rel="stylesheet">
+      <link href="css/delete.css" rel="stylesheet">
+      <link rel="shortcut icon" href="assets/title.png" type="image/png">
+    </head>
+    <body class="navbar-expand-lg wow fadeIn faster" data-wow-delay="300ms" data-spy="scroll" data-target="#sm" data-offset="60">
+          <div class="container-fluid fixed-top bg-primary" id="topnav">
+          <div class="row collapse show no-gutters d-flex h-100 position-relative sidebar-collapse">
+              <div class="col-6 pr-4 w-sidebar navbar-collapse collapse d-none d-lg-flex">
+                <img src="./assets/klop.png" width="200px" height="45px">          
+              </div>
+              <div class="col">
+                  <nav class="navbar navbar-dark navbar-expand px-lg-1">
+                      <a data-toggle="collapse" href="#" data-target=".sidebar-collapse" class="navbar-brand mr-3">
+                          <span class="h4 align-middle mb-0"><span class="lnr lnr-menu"></span></span>
+                      </a>
+                      <a class="navbar-brand" href="#" title="Home" data-toggle="dropdown">Меню</a>
+                      <ul class="navbar-nav ml-auto mr-2">
+                      </ul>
+                      <div class="preloader">
+                        <div class="preloader__row">
+                 
+                        </div>
+                      </div>
+                
+                      <ul class="navbar-nav">
+                          <li class="nav-item dropdown">
+                              <a href="#" class="nav-link py-0 text-truncate" data-toggle="dropdown">
+                                  <span class="align-middle" id="NameFamil" data-toggle="tooltip" data-placement="left" title="You are logged in"></span><!--тут имя менеджера-->
+                                  
+                              </a>
+                              <div class="dropdown-menu dropdown-menu-right mt-3 border-light shadow text-uppercase animate-grow-in">
+                                <a class="dropdown-item px-3" href="#profile" data-target="#Profile" data-toggle="modal"><span class="lnr lnr-user"></span> Мой профиль</a>
+                                  <div class="dropdown-divider">
+                                      
+                                  </div>
+                                  <button class="dropdown-item px-3" id="exit" data-target="#modalSmall" data-toggle="modal"><span class="lnr lnr-exit"></span> Выйти из кабинета</button>
+                              
+                              </div>
+                          </li>
+                      </ul>
+                  </nav>
+              </div>
+          </div>
+      </div>
+      <div class="container-fluid h-100 px-0">
+          <div class="row collapse show no-gutters d-flex h-100 position-relative sidebar-collapse">
+              <div class="col-3 p-0 h-100 w-sidebar navbar-collapse collapse d-none d-lg-flex sidebar-collapse sidebar">
+                                  <!-- fixed sidebar -->
+                  <div class="navbar navbar-dark d-block bg-dark text-white position-fixed h-100 align-self-start w-sidebar shadow-sm p-0 pt-2 pb-4 text-uppercase" id="sidebar">
+                      <button data-toggle="collapse" data-target=".sidebar-collapse" class="navbar-brand my-1 mr-3 float-right p-0 d-inline-block d-lg-none btn btn-link">
+                          <span class="h4 align-middle mb-0"><span class="lnr lnr-menu"></span></span>
+                      </button>
+                      <div class="nav flex-column flex-wrap pt-5 mt-3" id="menu1">
+                          <a href="./#" class="nav-link ripple" aria-expanded="true" data-toggle="collapse" data-target="#demo1"><i class="icon-speedometer icons"></i> Навигационное меню</a>
+                          <div class="collapse show" data-parent="#menu1" id="demo1">
+                              <div class="nav flex-column flex-wrap text-truncate">
+                                  <a href="./index.html" class="nav-link">Список заказчиков</a>
+                                  <a href="./objeck.html" class="nav-link">Список обьектов</a>
+                                  <a href="./" class="nav-link" title="Default">История</a>
+                        
+                              </div>
+                          </div>
+                          <a href="./addUser.html" class="nav-link"><i class="icon-plus icons"></i> +Аккаунты</a>
+          
+                      
+                   
+                      </div>
+                      <div class="nav flex-column text-truncate">
+                 
+                        
+                      </div>
+                  
+                  </div>
+              </div>
+              <div class="col p-0 d-flex flex-column">
+           
+                  <main class="p-4 flex-fill">
+                      <div class="row py-3">
+                          <div class="col-12 wow fadeInUp faster">
+                              <div class="position-relative">
+                                <div>
+                                      <label><h4>История
+
+                            
+                                      </h4>
+                                   
+                                </label> 
+                                </div>
+                         
+                                <style>
+                                    .table_sort table {
+                                    border-collapse: collapse;
+                                }
+                                
+                                .table_sort th {
+                                    color: #000000;
+                                    background: #f7f2f2;
+                                    cursor: pointer;
+                                }
+                                
+                                .table_sort td,
+                                .table_sort th {
+                                    width: 270px;
+                                    height: 40px;
+                                    text-align: center;
+                                    border: 2px solid #846868;
+                                }
+                                
+                                
+                                th.sorted[data-order="1"],
+                                th.sorted[data-order="-1"] {
+                                    position: relative;
+                                }
+                                
+                                th.sorted[data-order="1"]::after,
+                                th.sorted[data-order="-1"]::after {
+                                    right: 10px;
+                                    position: absolute;
+                                }
+                                
+                                th.sorted[data-order="-1"]::after {
+                                    content: "▼"
+                                }
+                                
+                                th.sorted[data-order="1"]::after {
+                                    content: "▲"
+                                }
+                                </style>
+                                  <ul class="nav nav-tabs" role="tablist">
+                                      <li class="nav-item"><a href="#tab1" class="nav-link text-uppercase" data-toggle="tab" data-target="#tab1" role="tab"> Январь</a></li>
+                                      <li class="nav-item"><a href="#tab2" class="nav-link text-uppercase" data-toggle="tab" data-target="#tab2" role="tab"> Февраль</a></li>
+                                      <li class="nav-item"><a href="#tab3" class="nav-link text-uppercase" data-toggle="tab" data-target="#tab3" role="tab"> Март</a></li>
+                                      <li class="nav-item"><a href="#tab4" class="nav-link text-uppercase" data-toggle="tab" data-target="#tab4" role="tab"> Апрель</a></li>
+                                      <li class="nav-item"><a href="#tab5" class="nav-link text-uppercase" data-toggle="tab" data-target="#tab5" role="tab"> Май</a></li>
+                                      <li class="nav-item"><a href="#tab6" class="nav-link text-uppercase" data-toggle="tab" data-target="#tab6" role="tab"> Июнь</a></li>
+                                      <li class="nav-item"><a href="#tab7" class="nav-link text-uppercase" data-toggle="tab" data-target="#tab7" role="tab" > Июль</a></li>
+                                      <li class="nav-item"><a href="#tab8" class="nav-link text-uppercase" data-toggle="tab" data-target="#tab8" role="tab"> Август</a></li>
+                                      <li class="nav-item"><a href="#tab9" class="nav-link text-uppercase" data-toggle="tab" data-target="#tab9" role="tab"> Сентябрь</a></li>
+                                      <li class="nav-item"><a href="#tab10" class="nav-link text-uppercase" data-toggle="tab" data-target="#tab10" role="tab"> Октябрь</a></li>
+                                      <li class="nav-item"><a href="#tab11" class="nav-link text-uppercase" data-toggle="tab" data-target="#tab11" role="tab"> Ноябрь</a></li>
+                                      <li class="nav-item"><a href="#tab12" class="nav-link text-uppercase" data-toggle="tab" data-target="#tab12" role="tab"> Декабрь</a></li>
+                                  </ul>
+                                  <div class="tab-content shadow-sm p-3">
+                                      <div class="tab-pane active" id="tab1" role="tabpanel">
+                                        <form id="januere" method="POST" action="">
+                                            <input class="form-control col-md-6 ml-sm-auto col-lg-2 px-1" id="januere" name="mira" type="text" placeholder="Поиск..." >
+                                          <br>
+                                            <div align="right">
+                                            <span class="custom-dropdown big">
+                                                <label>История выполнения объектов за
+                                                <select class="custom-dropdown big" name="year" onclick="see_1()">    
+                                                    <option>2020</option>
+                                                    <option>2021</option>  
+                                                    <option>2022</option>
+                                                    <option>2023</option>
+                                                    <option>2024</option>
+                                                </select>
+                                                год</label>
+                                            </span>
+                                        </div>
+                                         </form>
+                                        <div class="card shadow-sm mb-3">
+                                            
+                                          <div class="table-responsive">
+                                            <table  class="table_sort table-hover table-bordered" id="datatable-example">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Заказчик</th>
+                                                        <th>Объект</th>
+                                                        <th>Адресс объекта</th>
+                                                        <th>Телефон ответственного лица</th>
+                                                        <th>Площать объекта</th>
+                                                        <th>Санитано-техническое состоиние</th>
+                                                        <th>Фото</th>
+                                                        <th>Исполнитель</th>
+                                                        <th>Дата выполнения</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="1">
+                                          
+                                                </tbody>
+                                            </table>
+                                          </div> 
+                                         </div>
+                                        </div>
+                                         <!-- /tab-pane -->
+                                            <div class="tab-pane" id="tab2" role="tabpanel">
+                                                <form id="february" method="POST" action="">
+                                                    <input class="form-control col-md-6 ml-sm-auto col-lg-2 px-1" id="february" name="mira" type="text" placeholder="Поиск..." >
+                                                    <br>
+                                                    <div align="right">
+                                                    <span class="custom-dropdown big">
+                                                        <label>История выполнения объектов за
+                                                        <select class="custom-dropdown big" name="year" onclick="see_2()">    
+                                                            <option>2020</option>
+                                                            <option>2021</option>  
+                                                            <option>2022</option>
+                                                            <option>2023</option>
+                                                            <option>2024</option>
+                                                        </select>
+                                                        год</label>
+                                                    </span>
+                                                </div>
+                                                 </form>
+                                                <div class="table-responsive">
+                                                <div class="card shadow-sm mb-3">
+                                                   
+                                                    <table class="table_sort table-hover table-bordered" id="datatable-example">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Заказчик</th>
+                                                                <th>Объект</th>
+                                                                <th>Адресс объекта</th>
+                                                                <th>Телефон ответственного лица</th>
+                                                                <th>Площать объекта</th>
+                                                                <th>Санитано-техническое состоиние</th>
+                                                                <th>Фото</th>
+                                                                <th>Исполнитель</th>
+                                                                <th>Дата выполнения</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody id="2">
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                </div>
+                                            </div>
+                                            <!-- /tab-pane -->
+                                            <div class="tab-pane" id="tab3" role="tabpanel">
+                                                <form id="march" method="POST" action="">
+                                                    <input class="form-control col-md-6 ml-sm-auto col-lg-2 px-1" id="march" name="mira" type="text" placeholder="Поиск..." >
+                                                    <br>
+                                                    <div align="right">
+                                                    <span class="custom-dropdown big">
+                                                        <label>История выполнения объектов за
+                                                        <select class="custom-dropdown big" name="year" onclick="see_3()">    
+                                                            <option>2020</option>
+                                                            <option>2021</option>  
+                                                            <option>2022</option>
+                                                            <option>2023</option>
+                                                            <option>2024</option>
+                                                        </select>
+                                                        год</label>
+                                                    </span>
+                                                </div>
+                                 
+                                                 </form>
+                                                <div class="table-responsive">
+                                                <div class="card shadow-sm mb-3">
+                                                   
+                                                    <table  class="table_sort table-hover table-bordered" id="datatable-example" >
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Заказчик</th>
+                                                                <th>Объект</th>
+                                                                <th>Адресс объекта</th>
+                                                                <th>Телефон ответственного лица</th>
+                                                                <th>Площать объекта</th>
+                                                                <th>Санитано-техническое состоиние</th>
+                                                                <th>Фото</th>
+                                                                <th>Исполнитель</th>
+                                                                <th>Дата выполнения</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody id="3">
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                </div>
+                                            </div>
+                                            <!-- /tab-pane -->
+                                            <div class="tab-pane" id="tab4" role="tabpanel">
+                                                <form id="april" method="POST" action="">
+                                                    <input class="form-control col-md-6 ml-sm-auto col-lg-2 px-1" id="april" name="mira" type="text" placeholder="Поиск..." >
+                                                    <br>
+                                                    <div align="right">
+                                                    <span class="custom-dropdown big">
+                                                        <label>История выполнения объектов за
+                                                        <select class="custom-dropdown big" name="year" onclick="see_4()">    
+                                                            <option>2020</option>
+                                                            <option>2021</option>  
+                                                            <option>2022</option>
+                                                            <option>2023</option>
+                                                            <option>2024</option>
+                                                        </select>
+                                                    год</label>
+                                                    </span>
+                                                </div>
+                                                 </form>
+                                                <div class="table-responsive">
+                                                <div class="card shadow-sm mb-3">
+                                                    
+                                                    <table  class="table_sort table-hover table-bordered" id="datatable-example" >
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Заказчик</th>
+                                                                <th>Объект</th>
+                                                                <th>Адресс объекта</th>
+                                                                <th>Телефон ответственного лица</th>
+                                                                <th>Площать объекта</th>
+                                                                <th>Санитано-техническое состоиние</th>
+                                                                <th>Фото</th>
+                                                                <th>Исполнитель</th>
+                                                                <th>Дата выполнения</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody id="4">
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                </div>
+                                            </div>
+                                            <!-- /tab-pane -->
+                                            <div class="tab-pane" id="tab5" role="tabpanel">
+                                                <form id="may" method="POST" action="">
+                                                    <input class="form-control col-md-6 ml-sm-auto col-lg-2 px-1" id="may" name="mira" type="text" placeholder="Поиск..." >
+                                                    <br>
+                                                    <div align="right">
+                                                    <span class="custom-dropdown big">
+                                                        <label>История выполнения объектов за
+                                                        <select class="custom-dropdown big" name="year" onclick="see_5()">    
+                                                            <option>2020</option>
+                                                            <option>2021</option>  
+                                                            <option>2022</option>
+                                                            <option>2023</option>
+                                                            <option>2024</option>
+                                                        </select>
+                                                        год</label>
+                                                    </span>
+                                                </div>
+                                                 </form>
+                                                <div class="table-responsive">
+                                                <div class="card shadow-sm mb-3">
+                                                    
+                                                    <table  class="table_sort table-hover table-bordered" id="datatable-example" >
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Заказчик</th>
+                                                                <th>Объект</th>
+                                                                <th>Адресс объекта</th>
+                                                                <th>Телефон ответственного лица</th>
+                                                                <th>Площать объекта</th>
+                                                                <th>Санитано-техническое состоиние</th>
+                                                                <th>Фото</th>
+                                                                <th>Исполнитель</th>
+                                                                <th>Дата выполнения</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody id="5">
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                </div>
+                                            </div>
+                                            <!-- /tab-pane -->
+                                            <div class="tab-pane" id="tab6" role="tabpanel">
+                                                <form id="june" method="POST" action="">
+                                                    <input class="form-control col-md-6 ml-sm-auto col-lg-2 px-1" id="june" name="mira" type="text" placeholder="Поиск..." >
+                                                    <br>
+                                                    <div align="right">
+                                                    <span class="custom-dropdown big">
+                                                        <label>История выполнения объектов за
+                                                        <select class="custom-dropdown big" name="year" onclick="see_6()">    
+                                                            <option>2020</option>
+                                                            <option>2021</option>  
+                                                            <option>2022</option>
+                                                            <option>2023</option>
+                                                            <option>2024</option>
+                                                        </select>
+                                                       год </label>
+                                                    </span>
+                                                </div>
+                                                 </form>
+                                                <div class="table-responsive">
+                                                <div class="card shadow-sm mb-3">
+                                             
+                                                    <table  class="table_sort table-hover table-bordered" id="datatable-example">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Заказчик</th>
+                                                                <th>Объект</th>
+                                                                <th>Адресс объекта</th>
+                                                                <th>Телефон ответственного лица</th>
+                                                                <th>Площать объекта</th>
+                                                                <th>Санитано-техническое состоиние</th>
+                                                                <th>Фото</th>
+                                                                <th>Исполнитель</th>
+                                                                <th>Дата выполнения</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody id="6">
+                                                            
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                </div>
+                                            </div>
+                                            <!-- /tab-pane -->
+                                            <div class="tab-pane" id="tab7" role="tabpanel">
+                                                <form id="july" method="POST" action="">
+                                                    <input class="form-control col-md-6 ml-sm-auto col-lg-2 px-1" id="july" name="mira" type="text" placeholder="Поиск..." >
+                                                    <br>
+                                                    <div align="right">
+                                                    <span class="custom-dropdown big">
+                                                        <label>История выполнения объектов за
+                                                        <select class="custom-dropdown big" name="year" onclick="see_7()">    
+                                                            <option>2020</option>
+                                                            <option>2021</option>  
+                                                            <option>2022</option>
+                                                            <option>2023</option>
+                                                            <option>2024</option>
+                                                        </select>
+                                                    год</label>
+                                                    </span>
+                                                </div>
+                         
+                                                 </form>
+                                                <div class="table-responsive">
+                                                <div class="card shadow-sm mb-3">
+                                                    
+                                                    <table  class="table_sort table-hover table-bordered" id="datatable-example">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Заказчик</th>
+                                                                <th>Объект</th>
+                                                                <th>Адресс объекта</th>
+                                                                <th>Телефон ответственного лица</th>
+                                                                <th>Площать объекта</th>
+                                                                <th>Санитано-техническое состоиние</th>
+                                                                <th>Фото</th>
+                                                                <th>Исполнитель</th>
+                                                                <th>Дата выполнения</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody id="7">
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                </div>
+                                            </div>
+                                            <!-- /tab-pane -->
+                                            <div class="tab-pane" id="tab8" role="tabpanel">
+                                                <form id="august" method="POST" action="">
+                                                    <input class="form-control col-md-6 ml-sm-auto col-lg-2 px-1" id="august" name="mira" type="text" placeholder="Поиск..." >
+                                                    <br>
+                                                    <div align="right">
+                                                    <span class="custom-dropdown big">
+                                                        <label>История выполнения объектов за
+                                                        <select class="custom-dropdown big" name="year" onclick="see_8()">    
+                                                            <option>2020</option>
+                                                            <option>2021</option>  
+                                                            <option>2022</option>
+                                                            <option>2023</option>
+                                                            <option>2024</option>
+                                                        </select>
+                                                        год</label>
+                                                    </span>
+                                                </div>
+                                                 </form>
+                                                <div class="table-responsive">
+                                                <div class="card shadow-sm mb-3">
+                                                 
+                                                    <table class="table_sort table-hover table-bordered" id="datatable-example">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Заказчик</th>
+                                                                <th>Объект</th>
+                                                                <th>Адресс объекта</th>
+                                                                <th>Телефон ответственного лица</th>
+                                                                <th>Площать объекта</th>
+                                                                <th>Санитано-техническое состоиние</th>
+                                                                <th>Фото</th>
+                                                                <th>Исполнитель</th>
+                                                                <th>Дата выполнения</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody id="8">
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                </div>
+                                            </div>
+                                            <!-- /tab-pane -->
+                                            <div class="tab-pane" id="tab9" role="tabpanel">
+                                           
+                                                <form id="september" method="POST" action="">
+                                                    <input class="form-control col-md-6 ml-sm-auto col-lg-2 px-1" id="september" name="mira" type="text" placeholder="Поиск..." >
+                                                    <br>
+                                                    <div align="right">
+                                                    <span class="custom-dropdown big">
+                                                        <label>История выполнения объектов за
+                                                        <select class="custom-dropdown big" name="year" onclick="see_9()">    
+                                                            <option>2020</option>
+                                                            <option>2021</option>  
+                                                            <option>2022</option>
+                                                            <option>2023</option>
+                                                            <option>2024</option>
+                                                        </select>
+                                                        год</label>
+                                                    </span>
+                                                </div>
+                                                 </form>
+                                                <div class="table-responsive">
+                                                <div class="card shadow-sm mb-3">
+                                                 
+                                                    <table class="table_sort table-hover table-bordered" id="datatable-example" >
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Заказчик</th>
+                                                                <th>Объект</th>
+                                                                <th>Адресс объекта</th>
+                                                                <th>Телефон ответственного лица</th>
+                                                                <th>Площать объекта</th>
+                                                                <th>Санитано-техническое состоиние</th>
+                                                                <th>Фото</th>
+                                                                <th>Исполнитель</th>
+                                                                <th>Дата выполнения</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody id="9">
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                </div>
+                                            </div>
+                                            <!-- /tab-pane -->
+                                            <div class="tab-pane" id="tab10" role="tabpanel">
+                                                <form id="october" method="POST" action="">
+                                                    <input class="form-control col-md-6 ml-sm-auto col-lg-2 px-1" id="october" name="mira" type="text" placeholder="Поиск..." >
+                                                    <br>
+                                                    <div align="right">
+                                                    <span class="custom-dropdown big">
+                                                        <label>История выполнения объектов за
+                                                        <select class="custom-dropdown big" name="year" onclick="see_10()">    
+                                                            <option>2020</option>
+                                                            <option>2021</option>  
+                                                            <option>2022</option>
+                                                            <option>2023</option>
+                                                            <option>2024</option>
+                                                        </select>
+                                                        год</label>
+                                                    </span>
+                                                </div>
+                                
+                                                 </form>
+                                                <div class="table-responsive">
+                                                <div class="card shadow-sm mb-3">
+                                      
+                                                    <table class="table_sort table-hover table-bordered" id="datatable-example">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Заказчик</th>
+                                                                <th>Объект</th>
+                                                                <th>Адресс объекта</th>
+                                                                <th>Телефон ответственного лица</th>
+                                                                <th>Площать объекта</th>
+                                                                <th>Санитано-техническое состоиние</th>
+                                                                <th>Фото</th>
+                                                                <th>Исполнитель</th>
+                                                                <th>Дата выполнения</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody id="10">
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                </div>
+                                            </div>
+                                               <!-- /tab-pane -->
+                                               <div class="tab-pane" id="tab11" role="tabpanel">
+                                                <form id="november" method="POST" action="">
+                                                    <input class="form-control col-md-6 ml-sm-auto col-lg-2 px-1" id="november" name="mira" type="text" placeholder="Поиск..." >
+                                                    <br>
+                                                    <div align="right">
+                                                    <span class="custom-dropdown big">
+                                                        <label>История выполнения объектов за
+                                                        <select class="custom-dropdown big" name="year" onclick="see_11()">    
+                                                            <option>2020</option>
+                                                            <option>2021</option>  
+                                                            <option>2022</option>
+                                                            <option>2023</option>
+                                                            <option>2024</option>
+                                                        </select>
+                                                        год</label>
+                                                    </span>
+                                                </div>
+                                                 </form>
+                                                <div class="table-responsive">
+                                                <div class="card shadow-sm mb-3">
+                                               
+                                                    <table class="table_sort table-hover table-bordered" id="datatable-example">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Заказчик</th>
+                                                                <th>Объект</th>
+                                                                <th>Адресс объекта</th>
+                                                                <th>Телефон ответственного лица</th>
+                                                                <th>Площать объекта</th>
+                                                                <th>Санитано-техническое состоиние</th>
+                                                                <th>Фото</th>
+                                                                <th>Исполнитель</th>
+                                                                <th>Дата выполнения</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody id="11">
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                </div>
+                                            </div>
+                                         
+                                               <!-- /tab-pane -->
+                                               <div class="tab-pane" id="tab12" role="tabpanel">
+                                                <form id="december" method="POST" action="">
+                                                    <input class="form-control col-md-6 ml-sm-auto col-lg-2 px-1" id="december" name="mira" type="text" placeholder="Поиск..." >
+                                     
+                                                    <br>
+                                                    <div align="right">
+                                                    <span class="custom-dropdown big">
+                                                        <label>История выполнения объектов за
+                                                        <select class="custom-dropdown big" name="year" onclick="see_12()">    
+                                                            <option>2020</option>
+                                                            <option>2021</option>  
+                                                            <option>2022</option>
+                                                            <option>2023</option>
+                                                            <option>2024</option>
+                                                        </select>
+                                                        год</label>
+                                                    </span>
+                                                </div>
+                                                 </form>
+                                                    <div class="table-responsive">
+                                                        <div class="card shadow-sm mb-3">
+                                                   
+                                                    <table class="table_sort table-hover table-bordered" id="datatable-example">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Заказчик</th>
+                                                                <th>Объект</th>
+                                                                <th>Адресс объекта</th>
+                                                                <th>Телефон ответственного лица</th>
+                                                                <th>Площать объекта</th>
+                                                                <th>Санитано-техническое состоиние</th>
+                                                                <th>Фото</th>
+                                                                <th>Исполнитель</th>
+                                                                <th>Дата выполнения</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody id="12">
+                                                        </tbody>
+                                                    </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    </div>
+                                    </div>    
+                                      <!-- /tab-pane -->
+                                  </div>
+                 
+                                  <!-- /tab-content -->
+                              </div>
+                          </div>
+                      </div>
+                  </main>
+                              
+              </div>
+          </div>
+      </div>
+      
+          <div id="modalProfile" class="modal fade px-md-5 px-0" tabindex="-1" role="dialog" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered modal-lg mw-100 w-100 mx-auto">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h3 id="myModalLabel">Окно редактирования</h3>
+                      <button type="button" class="close font-weight-light" data-dismiss="modal" aria-hidden="true">&#xD7;</button>
+                  </div>
+                  <div class="col-xl-12">
+                  <div>
+                      <div class="tab-pane py-2" id="edit">
+                          <form class="row" method="POST" action="" id="custom_update">
+                          </form>
+                </div>
+                      </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div id="Profile" class="modal fade px-md-5 px-0" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg mw-100 w-100 mx-auto">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 id="myModalLabel">Профиль</h3>
+                    <button type="button" class="close font-weight-light" data-dismiss="modal" aria-hidden="true">&#xD7;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="row" id="proUser">
+                
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="Photo" class="modal fade px-md-2" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="myModalLabel">Фотографии объекта</h3>
+                <button type="button" class="close font-weight-light" data-dismiss="modal" aria-hidden="true">&#xD7;</button>
+            </div>
+       
+                <div id="myCarousel" class="carousel slide">
+                  <div class="carousel-inner" >
+          <div id="photo">
+             
+              </div>
+                  <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                  </a>
+                  <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                  </a>
+                </div>
+                </div><!-- /.container -->
+        </div>
+    </div>
+</div>
+
+      <!--scripts loaded here-->
+      <script src="MyJs/jquery-2.1.3.min.js"></script>
+      <script src="MyJs/sweetalert.js"></script>
+      <script src="MyJs/user/cosmetics.js"></script>
+      <script src="MyJs/login/sessia.js"></script>
+      <script src="MyJs/history/history.js"></script>
+  
+  
+      <script src="./js/jquery.min.js"></script>
+
+      <script src="./js/bootstrap.bundle.min.js"></script>
+    
+      <script src="./js/wow.min.js"></script>
+      <script src="./js/Chart.min.js"></script>
+      <script src="./js/angular.min.js"></script>
+      <script src="./js/app.js"></script>
+  
+    </body>
+  </html>
